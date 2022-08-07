@@ -9,6 +9,7 @@ int getLowestNumber(int a, int b, int c);
 
 const char LOWEST_CHAR = 'A';
 const char HIGHEST_CHAR =  'Z';
+const char MID_CHAR = 'N';
 
 int main() {
     int numberOfInputCases;
@@ -27,18 +28,10 @@ int getAmountOfMovesInAWord(char currentWord[]) {
     int totalMoves = 0;
     int wordLength = strlen(currentWord);
     for (int j = 0; j < wordLength; j++) {
-        char currentCharacter = currentWord[j];
-        totalMoves += getMinimumAmountOfMovesToGetChar(currentCharacter);
+        totalMoves += getMinimumAmountOfMovesToGetChar(currentWord[j]);
     }
 
-    totalMoves += getSideMoves(currentWord, wordLength);
-    return totalMoves;
-}
-
-int getMinimumAmountOfMovesToGetChar(char ch) {
-    int tempMovesForward = ch - LOWEST_CHAR;
-    int tempMovesBackwards = (HIGHEST_CHAR + 1) - ch;
-    return (tempMovesForward < tempMovesBackwards) ? tempMovesForward : tempMovesBackwards;
+    return (totalMoves + getSideMoves(currentWord, wordLength));
 }
 
 int getSideMoves(char word[], int wordLength){
@@ -52,6 +45,10 @@ int getSideMoves(char word[], int wordLength){
         }
     }
     return tempMoves;
+}
+
+int getMinimumAmountOfMovesToGetChar(char ch) {
+    return (ch < MID_CHAR) ? (ch - LOWEST_CHAR): ((HIGHEST_CHAR + 1) - ch);
 }
 
 int getLowestNumber(int a, int b, int c){
