@@ -8,8 +8,8 @@ int findAndGetLastIndexOfNextGroupOfAIfNextCharIsA(char word[], int currentIndex
 int getLowestNumber(int a, int b, int c);
 
 const char LOWEST_CHAR = 'A';
-const char HIGHEST_CHAR =  'Z';
 const char MID_CHAR = 'N';
+const char HIGHEST_CHAR =  'Z';
 
 int main() {
     int numberOfInputCases;
