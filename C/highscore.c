@@ -3,7 +3,6 @@
 
 int getAmountOfMovesInAWord(char currentWord[]);
 int getMinimumAmountOfMovesToGetChar(char ch);
-int getSideMoves(char word[], int wordLength);
 int findAndGetLastIndexOfNextGroupOfAIfNextCharIsA(char word[], int currentIndex, int wordLength);
 int getLowestNumber(int a, int b, int c);
 
@@ -25,26 +24,20 @@ int main() {
 }
 
 int getAmountOfMovesInAWord(char currentWord[]) {
-    int totalMoves = 0;
     int wordLength = strlen(currentWord);
-    for (int j = 0; j < wordLength; j++) {
-        totalMoves += getMinimumAmountOfMovesToGetChar(currentWord[j]);
-    }
-
-    return (totalMoves + getSideMoves(currentWord, wordLength));
-}
-
-int getSideMoves(char word[], int wordLength){
     int tempMoves = wordLength - 1;
+    int totalMoves = 0;
 
-    for(int i = 0; i < wordLength; i++) {
-        int tmp = findAndGetLastIndexOfNextGroupOfAIfNextCharIsA(word, i, wordLength);
+    for (int i = 0; i < wordLength; i++) {
+        totalMoves += getMinimumAmountOfMovesToGetChar(currentWord[i]);
+        int tmp = findAndGetLastIndexOfNextGroupOfAIfNextCharIsA(currentWord, i, wordLength);
         if(tmp > i){
-            tempMoves = getLowestNumber(((i + i) + ((wordLength - tmp) - 1)), ((((wordLength - tmp) - 1) * 2) + (i)), tempMoves);
+            tempMoves = getLowestNumber(((i << 1) + ((wordLength - tmp) - 1)), ((((wordLength - tmp) - 1) << 1) + (i)), tempMoves);
             i = tmp;
         }
     }
-    return tempMoves;
+
+    return (totalMoves + tempMoves);
 }
 
 int getMinimumAmountOfMovesToGetChar(char ch) {
