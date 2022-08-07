@@ -56,6 +56,6 @@ int getLowestNumber(int a, int b, int c){
 }
 
 int findAndGetLastIndexOfNextGroupOfAIfNextCharIsA(char word[], int currentIndex, int wordLength){
-    return (currentIndex < wordLength) && (word[currentIndex + 1] == LOWEST_CHAR) ? findAndGetLastIndexOfNextGroupOfAIfNextCharIsA(
+    return (currentIndex < wordLength - 1) && (word[currentIndex + 1] == LOWEST_CHAR) ? findAndGetLastIndexOfNextGroupOfAIfNextCharIsA(
             word, currentIndex + 1, wordLength) : currentIndex;
 }
